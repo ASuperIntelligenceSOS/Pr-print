@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bioenergetic Dominance | Paccini Hypothesis</title>
 
-    <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 
@@ -56,12 +55,21 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            /* plus de place en haut pour le titre */
-            padding: 80px 46px 40px;
+            padding: 40px 46px 40px;
+        }
+
+        /* --- NOUVEAU CONTENEUR FLEX POUR LE HAUT --- */
+        .top-section {
+            display: flex;
+            justify-content: space-between; /* Écarte le titre et le HUD */
+            align-items: flex-start;
+            width: 100%;
+            pointer-events: none;
         }
 
         header {
             pointer-events: auto;
+            max-width: 65%; /* Empêche le titre de toucher le HUD sur écran large */
         }
 
         h1 {
@@ -79,18 +87,17 @@
             max-width: 340px;
         }
 
-        /* HUD top-right */
+        /* HUD (Modifié pour ne plus être en absolute) */
         .hud {
-            position: absolute;
-            top: 24px;
-            right: 46px;
-            pointer-events: none;
+            position: relative; /* Changé de absolute à relative */
             text-align: right;
             font-size: 0.7rem;
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--text-secondary);
             max-width: 260px;
+            flex-shrink: 0;
+            padding-top: 8px; /* Alignement visuel avec le haut du titre */
         }
 
         .hud-line {
@@ -243,10 +250,20 @@
             transition: width 0.5s ease;
         }
 
-        /* Mobile */
-        @media (max-width: 768px) {
+        /* Mobile / tablette : Adaptation Flexbox */
+        @media (max-width: 900px) {
             #ui-layer {
-                padding: 70px 20px 24px;
+                padding: 24px 20px 24px;
+            }
+
+            /* Change la direction du conteneur haut en colonne */
+            .top-section {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            header {
+                max-width: 100%;
             }
 
             h1 {
@@ -258,10 +275,12 @@
             }
 
             .hud {
-                top: 16px;
-                right: 20px;
-                max-width: 210px;
-                font-size: 0.62rem;
+                text-align: left;
+                max-width: none;
+                padding-top: 0;
+                font-size: 0.65rem;
+                letter-spacing: 0.11em;
+                /* Plus besoin de margin-top car géré par le gap du flex */
             }
 
             #card-container {
@@ -280,18 +299,20 @@
     <div id="canvas-container"></div>
 
     <div id="ui-layer">
-        <header>
-            <h1>The Bioenergetic Dominance</h1>
-            <div class="subtitle">
-                Visualizing N. Paccini's multidimensional analysis of post-viral energy collapse and human-level risk.
-            </div>
-        </header>
+        <div class="top-section">
+            <header>
+                <h1>The Bioenergetic Dominance</h1>
+                <div class="subtitle">
+                    Visualizing N. Paccini's multidimensional analysis of post-viral energy collapse and human-level risk.
+                </div>
+            </header>
 
-        <div class="hud">
-            <div class="hud-line">ME/CFS · Post-viral syndromes · Human energy systems</div>
-            <div class="hud-pill">
-                <span class="hud-pill-dot"></span>
-                <span>Global Bioenergetic Risk Index: 0.92</span>
+            <div class="hud">
+                <div class="hud-line">ME/CFS · Post-viral syndromes · Human energy systems</div>
+                <div class="hud-pill">
+                    <span class="hud-pill-dot"></span>
+                    <span>Global Bioenergetic Risk Index: 0.92</span>
+                </div>
             </div>
         </div>
 
