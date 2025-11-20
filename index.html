@@ -56,7 +56,8 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 40px 46px;
+            /* plus de place en haut pour le titre */
+            padding: 80px 46px 40px;
         }
 
         header {
@@ -81,7 +82,7 @@
         /* HUD top-right */
         .hud {
             position: absolute;
-            top: 40px;
+            top: 24px;
             right: 46px;
             pointer-events: none;
             text-align: right;
@@ -89,6 +90,7 @@
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--text-secondary);
+            max-width: 260px;
         }
 
         .hud-line {
@@ -244,7 +246,7 @@
         /* Mobile */
         @media (max-width: 768px) {
             #ui-layer {
-                padding: 20px;
+                padding: 70px 20px 24px;
             }
 
             h1 {
@@ -256,8 +258,10 @@
             }
 
             .hud {
-                top: 18px;
+                top: 16px;
                 right: 20px;
+                max-width: 210px;
+                font-size: 0.62rem;
             }
 
             #card-container {
